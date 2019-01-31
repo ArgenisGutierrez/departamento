@@ -136,11 +136,11 @@
               </div>
     </div>
     <div class="form-group">
-      <label>No. Economico de la Unidad:</label>
+      <label>Serie:</label>
       <select class="js-example-basic-single form-control" required autocomplete="off" name="id_unidad">
         <?php $unidad=departamento\unidad::all() ?>
         @foreach($unidad as $unidades)
-        <option value="{{$unidades->id_unidad}}">{{$unidades->no_economico}}</option>
+        <option value="{{$unidades->id_unidad}}">{{$unidades->serie}}</option>
         @endforeach
       </select>
     </div>
@@ -162,7 +162,7 @@
               <div class="form-control">
 
               </div>
-              <label>Serie:</label>
+              <label>No. Economico:</label>
               <div class="form-control">
 
               </div>

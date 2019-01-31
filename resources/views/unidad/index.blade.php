@@ -27,18 +27,30 @@
         <h4><i class="icon fa fa-check"></i>{{session('status4')}}</h4>
       </div>
       @endif
-      <table class="table table-bordered table-striped" id="myTable">
+      <table class="table table-bordered table-striped" id="myTable" style="width:100%">
         <thead>
             <tr>
                 <th>Marca</th>
                 <th>Tipo</th>
-                <th>Placa</th>
                 <th>Modelo</th>
                 <th>Serie</th>
                 <th>No. Economico</th>
                 <th>Cil</th>
                 <th>Uso</th>
                 <th>Familia</th>
+                <th>Area</th>
+                <th>Placa Anterior</th>
+                <th>Placa Actual</th>
+                <th>Color</th>
+                <th>Propiedad</th>
+                <th>Patrulla/Civil</th>
+                <th>Estatus</th>
+                <th>Motivo de Inactividad</th>
+                <th>Ubicacion</th>
+                <th>Localidad</th>
+                <th>Adscripcion</th>
+                <th>Nombre de Adscripcion</th>
+                <th>Propietario</th>
                 @can('unidad.edit')
                 <th>Actualizar</th>
                 @endcan
@@ -55,13 +67,25 @@
       <tr role="row" class="odd">
       <td>{{$unidad->marca}}</td>
       <td>{{$unidad->tipo}}</td>
-      <td>{{$unidad->placa}}</td>
       <td>{{$unidad->modelo}}</td>
       <td>{{$unidad->serie}}</td>
       <td>{{$unidad->no_economico}}</td>
       <td>{{$unidad->cil}}</td>
       <td>{{$unidad->uso}}</td>
       <td>{{$unidad->familia}}</td>
+      <th>{{$unidad->area}}</th>
+      <th>{{$unidad->placa_anterior}}</th>
+      <th>{{$unidad->placa_actual}}</th>
+      <th>{{$unidad->color}}</th>
+      <th>{{$unidad->propiedad}}</th>
+      <th>{{$unidad->patrulla_civil}}</th>
+      <th>{{$unidad->estatus}}</th>
+      <th>{{$unidad->motivo_inactividad}}</th>
+      <th>{{$unidad->ubicacion}}</th>
+      <th>{{$unidad->localidad}}</th>
+      <th>{{$unidad->adscripcion}}</th>
+      <th>{{$unidad->nombre_adscripcion}}</th>
+      <th>{{$unidad->propietario}}</th>
       @can('unidad.edit')
       <td>{!!Form::open(['route'=>['unidad.edit',$unidad->id_unidad], 'method'=>'GET'])!!}
         {!!Form::submit('Editar',['class'=>'btn btn-block btn-warning btn-xs'])!!}
@@ -85,13 +109,25 @@
         <tr>
           <th>Marca</th>
           <th>Tipo</th>
-          <th>Placa</th>
           <th>Modelo</th>
           <th>Serie</th>
           <th>No. Economico</th>
           <th>Cil</th>
           <th>Uso</th>
           <th>Familia</th>
+          <th>Area</th>
+          <th>Placa Anterior</th>
+          <th>Placa Actual</th>
+          <th>Color</th>
+          <th>Propiedad</th>
+          <th>Patrulla/Civil</th>
+          <th>Estatus</th>
+          <th>Motivo de Inactividad</th>
+          <th>Ubicacion</th>
+          <th>Localidad</th>
+          <th>Adscripcion</th>
+          <th>Nombre de Adscripcion</th>
+          <th>Propietario</th>
           @can('unidad.edit')
           <th>Actualizar</th>
           @endcan

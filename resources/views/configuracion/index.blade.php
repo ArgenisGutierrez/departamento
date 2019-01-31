@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-      Lista de Roles
+      Configuracion
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Menu</a></li>

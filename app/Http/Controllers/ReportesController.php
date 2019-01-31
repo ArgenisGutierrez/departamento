@@ -72,7 +72,7 @@ class ReportesController extends Controller
   }
 
   public function reporte_vehiculos_inactivos(){
-    $pdf = PDF::loadView('pdf.reporte_vehiculos_taller_siniestrado');
+    $pdf = PDF::loadView('pdf.reporte_vehiculos_taller_siniestrado')->setPaper('letter','landscape');
     return $pdf->download('Reporte de vehiculos en taller y siniestrados.pdf');
   }
 

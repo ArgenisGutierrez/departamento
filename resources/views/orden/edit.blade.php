@@ -1,6 +1,10 @@
 @extends('home')
 @section('title','- Ordenes')
 @section('content')
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+</head>
 <section class="content-header">
     <h1>
       Editar Orden
@@ -42,10 +46,10 @@
     </div>
     <div class="form-group">
     <label>Encargado:</label>
-    <select class="form-control" required autocomplete="off" name="id_area">
+    <select class="js-example-basic-single form-control" required autocomplete="off" name="id_area">
     <?php $area=departamento\Area::all() ?>
-    @foreach($area as $areas)
     <option hidden value="{{$orden->area->id_area}}">{{$orden->area->encargado}}</option>
+    @foreach($area as $areas)
     <option value="{{$areas->id_area}}">{{$areas->encargado}}</option>
     @endforeach
     </select>
@@ -60,10 +64,10 @@
     </div>
     <div class="form-group">
     <label>Recibio</label>
-    <select class="form-control" required autocomplete="off" name="id_area_dos">
+    <select class="js-example-basic-single form-control" required autocomplete="off" name="id_area_dos">
       <?php $areados=departamento\AreaDos::all() ?>
-      @foreach($areados as $areasdos)
       <option hidden value="{{$orden->areados->id_area_dos}}">{{$orden->areados->encargado}}</option>
+      @foreach($areados as $areasdos)
       <option value="{{$areasdos->id_area_dos}}">{{$areasdos->encargado}}</option>
       @endforeach
     </select>
@@ -135,12 +139,12 @@
             </div>
     </div>
     <div class="form-group">
-    <label>No. Economico de la Unidad:</label>
-    <select class="form-control" required autocomplete="off" name="id_unidad">
+    <label>Serie de la Unidad:</label>
+    <select class="js-example-basic-single form-control" required autocomplete="off" name="id_unidad">
       <?php $unidad=departamento\unidad::all() ?>
-      <option hidden selected value="{{$orden->unidad->id_unidad}}">{{$orden->unidad->no_economico}}</option>
+      <option hidden selected value="{{$orden->unidad->id_unidad}}">{{$orden->unidad->serie}}</option>
       @foreach($unidad as $unidades)
-      <option value="{{$unidades->id_unidad}}">{{$unidades->no_economico}}</option>
+      <option value="{{$unidades->id_unidad}}">{{$unidades->serie}}</option>
       @endforeach
     </select>
     </div>
@@ -154,7 +158,7 @@
             <label class="form-control" id=""></label>
             <label>Modelo:</label>
             <label class="form-control" id=""></label>
-            <label>Serie:</label>
+            <label>No. Economico:</label>
             <label class="form-control" id=""></label>
             <label>cil:</label>
             <label class="form-control" id=""></label>
@@ -170,7 +174,7 @@
     </div>
     <div class="form-group">
     <label>Taller:</label>
-    <select class="form-control" required autocomplete="off" name="id_taller">
+    <select class="js-example-basic-single form-control" required autocomplete="off" name="id_taller">
       <?php $taller=departamento\taller::all() ?>
       <option hidden selected value="{{$orden->taller->id_taller}}">{{$orden->taller->nombre}}</option>
       @foreach($taller as $talleres)
@@ -217,4 +221,11 @@
     </div><!-- /.box-body -->
     </div>
   </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+  });
+  </script>
 @endsection

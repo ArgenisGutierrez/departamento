@@ -2,7 +2,7 @@
   $dictamen=departamento\dictamen::first();
  ?>
 <img src="imagenes/logo1.jpg" alt="" style="width: 730px; height: 65px;">
-<table WIDTH="730px" STYLE="table-layout:fixed" height="100%">
+<table WIDTH="730px" STYLE="table-layout:fixed">
     <tr>
         <td id="titulo" colspan="6" style="width:400px;">Dictamen Técnico de Autorización para Ingreso a Taller</td>
         <td style="width:50px;">Folio:</td>
@@ -30,7 +30,7 @@
     <tr>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('marca')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('tipo')}}</td>
-        <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('placa')}}</td>
+        <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('placa_actual')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('modelo')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('serie')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('no_economico')}}</td>
@@ -151,6 +151,7 @@
     border: 1px solid rgb(0, 0, 0);
     text-align: center;
     word-wrap: break-word;
+    font-size: 13px;
   }
   table{
     border-collapse: collapse;

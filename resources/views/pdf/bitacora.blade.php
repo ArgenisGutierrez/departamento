@@ -67,7 +67,11 @@
     <td colspan="2" id="linea">{{$unidad->cil}}</td>
     <td style=""></td>
     <td colspan="2">Área de Asignacion</td>
+    @if($unidad->uso=="Operativo")
+    <td colspan="4" id="linea">Unidad Operativa</td>
+    @else
     <td colspan="4" id="linea">Unidad Administrativa</td>
+    @endif
   </tr>
   <tr>
     <td style="font-size:10;">No. Económico</td>

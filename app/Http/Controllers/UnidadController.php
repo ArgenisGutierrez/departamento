@@ -25,7 +25,7 @@ class UnidadController extends Controller
      */
     public function create()
     {
-        return view('registros.registros');
+        return view('registros.plantilla');
     }
 
     /**
@@ -39,13 +39,25 @@ class UnidadController extends Controller
       $unidad= new unidad();
       $unidad->marca= $request->input('marca');
       $unidad->tipo= $request->input('tipo');
-      $unidad->placa= $request->input('placa');
       $unidad->modelo= $request->input('modelo');
       $unidad->serie= $request->input('serie');
       $unidad->no_economico= $request->input('no_economico');
       $unidad->cil= $request->input('cil');
       $unidad->uso= $request->input('uso');
       $unidad->familia= $request->input('familia');
+      $unidad->area= $request->input('area');
+      $unidad->placa_anterior= $request->input('placa_anterior');
+      $unidad->placa_actual= $request->input('placa_actual');
+      $unidad->color= $request->input('color');
+      $unidad->propiedad= $request->input('propiedad');
+      $unidad->patrulla_civil= $request->input('patrulla_civil');
+      $unidad->estatus= $request->input('estatus');
+      $unidad->motivo_inactividad= $request->input('motivo_inactividad');
+      $unidad->ubicacion= $request->input('ubicacion');
+      $unidad->localidad= $request->input('localidad');
+      $unidad->adscripcion= $request->input('adscripcion');
+      $unidad->nombre_adscripcion= $request->input('nombre_adscripcion');
+      $unidad->propietario= $request->input('propietario');
       $unidad->save();
       return redirect()->route('unidad.create',[$unidad])->with('status4','Informacion Guardada Correctamente');
     }

@@ -23,7 +23,7 @@
   <div class="box-body">
     <div class="box-body table-responsive no-padding">
       @include('common.status')
-      <table class="table table-bordered table-striped" id="myTable"  >
+      <table class="table table-bordered table-striped" id="myTable" style="width:100%">
         <thead>
             <tr>
                 <th>Nombre</th>

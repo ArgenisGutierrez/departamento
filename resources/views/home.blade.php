@@ -76,7 +76,7 @@
 
                 <!-- pie del menu de Usuario-->
                 <li class="user-footer">
-                  
+
                   <div class="pull-right">
                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -140,8 +140,20 @@
               @can('taller.index')
               <li><a href="/taller"><i class="glyphicon glyphicon-wrench"></i> Talleres </a></li>
               @endcan
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+                <i class="fa fa-fw fa-cab"></i>
+                <span>Plantilla</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            <ul class="treeview-menu">
+              @can('unidad.create')
+              <li><a href="/unidad/create"><i class="glyphicon glyphicon-pencil"></i> Registrar</a></li>
+              @endcan
               @can('unidad.index')
-              <li><a href="/unidad"><i class="fa fa-fw fa-cab"></i> Unidadades </a></li>
+              <li><a href="/unidad"><i class="fa fa-fw fa-list-ul"></i> Plantilla</a></li>
               @endcan
             </ul>
           </li>
@@ -299,11 +311,29 @@
   <script type="text/javascript" src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
     </script>
     <script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-  } );
-    </script>
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#myTable tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
 
+    // DataTable
+    var table = $('#myTable').DataTable();
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+} );
+    </script>
     <script>
       $(function () {
         //Initialize Select2 Elements
@@ -428,5 +458,4 @@
       });
     </script>
 </body>
-
 </html>

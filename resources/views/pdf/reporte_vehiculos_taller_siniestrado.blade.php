@@ -1,7 +1,7 @@
-<img src="imagenes/logo1.jpg" alt="" style="width: 730px; height: 65px;">
-<table WIDTH="730px" STYLE="table-layout:fixed" height="100%">
+<img src="imagenes/logo1.jpg" alt="" style="width: 100%; height:80px;">
+<table WIDTH="100%">
   <tr id="resaltar">
-    <td rowspan="2" colspan="2">Vehiculos propiedad de la secretaria de seguridad prublica</td>
+    <td rowspan="2" colspan="2" width="300px">Vehiculos propiedad de la secretaria de seguridad prublica</td>
     <td rowspan="2">Vehiculos Admon.</td>
     <td rowspan="2">Activos Operativos</td>
     <td colspan="9">Unidades inactivas</td>
@@ -432,6 +432,7 @@ td{
   text-align: center;
   word-wrap: break-word;
   border: 1px solid rgb(0, 0, 0);
+  font-size: 10px;
 }
 #resaltar{
   background: rgb(48, 48, 48);

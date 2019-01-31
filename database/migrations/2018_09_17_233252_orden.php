@@ -15,8 +15,8 @@ class Orden extends Migration
     {
       Schema::create('orden',function (Blueprint $table){
         $table->increments('id_orden');
-        $table->string('folio_dpa',10);
-        $table->string('no_oficio',20);
+        $table->string('folio_dpa');
+        $table->string('no_oficio');
         $table->date('fecha');
         $table->unsignedInteger('id_area');
         $table->unsignedInteger('id_area_dos');

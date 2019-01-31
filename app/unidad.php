@@ -12,13 +12,25 @@ class unidad extends Model
   protected $fillable=[
       'marca',
       'tipo',
-      'placa',
       'modelo',
       'serie',
       'no_economico',
       'cil',
       'uso',
-      'familia'
+      'familia',
+      'area',
+      'placa_anterior',
+      'placa_actual',
+      'color',
+      'propiedad',
+      'patrulla_civil',
+      'estatus',
+      'motivo_inactividad',
+      'ubicacion',
+      'localidad',
+      'adscripcion',
+      'nombre_adscripcion',
+      'propietario'
     ];
     public function ordenes()
     {

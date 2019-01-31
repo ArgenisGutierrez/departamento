@@ -31,22 +31,22 @@ class ExcelController extends Controller
 
   public function exportar_ordenes()
     {
-        return Excel::download(new OrdenExport, 'Orden.xlsx');
+        return Excel::download(new OrdenExport, 'Ordenes.xlsx');
     }
 
 public function exportar_unidades()
   {
-      return Excel::download(new UnidadExport, 'Unidad.xlsx');
+      return Excel::download(new UnidadExport, 'Unidades.xlsx');
   }
 
   public function exportar_talleres()
     {
-        return Excel::download(new TallerExport, 'Taller.xlsx');
+        return Excel::download(new TallerExport, 'Talleres.xlsx');
     }
 
     public function exportar_areas()
       {
-          return Excel::download(new AreaExport, 'Area.xlsx');
+          return Excel::download(new AreaExport, 'Areas.xlsx');
       }
 
       public function exportar_areas_dos()

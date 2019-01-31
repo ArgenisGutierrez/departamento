@@ -29,7 +29,7 @@
         <h4><i class="icon fa fa-check"></i>{{session('status2')}}</h4>
       </div>
       @endif
-      <table class="table table-bordered table-striped" id="myTable"  >
+      <table class="table table-bordered table-striped" id="myTable" style="width:100%">
         <thead>
             <tr>
                 <th>Encargado</th>

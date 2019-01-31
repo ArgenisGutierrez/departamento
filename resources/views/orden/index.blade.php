@@ -1,8 +1,6 @@
 @extends('home')
 @section('title','- Ordenes')
 @section('content')
-<!--dataTables-->
-
 <section class="content-header">
     <h1>
       Lista de Ordenes
@@ -24,7 +22,7 @@
   <div class="box-body">
     <div class="box-body table-responsive no-padding">
       @include('common.status')
-      <table class="table table-bordered " id="myTable"  >
+      <table class="table table-bordered " id="myTable">
         <thead>
             <tr>
               <th>Folio DPA</th>
@@ -86,7 +84,7 @@
         <td>{{$orden->mano_obra}}</td>
         <td>{{$orden->unidad->marca}}</td>
         <td>{{$orden->unidad->tipo}}</td>
-        <td>{{$orden->unidad->placa}}</td>
+        <td>{{$orden->unidad->placa_actual}}</td>
         <td>{{$orden->unidad->modelo}}</td>
         <td>{{$orden->unidad->serie}}</td>
         <td>{{$orden->unidad->no_economico}}</td>
