@@ -41,9 +41,6 @@
                 @can('taller.destroy')
                 <th>Eliminar</th>
                 @endcan
-                @can('taller.test')
-                <th>Test</th>
-                @endcan
             </tr>
         </thead>
       <tbody>
@@ -66,12 +63,6 @@
         {!!Form::close()!!}
       </td>
       @endcan
-      @can('taller.test')
-      <td>{!!Form::open(['route'=>['taller.test',$taller->id_taller], 'method'=>'GET'])!!}
-        {!! Form::submit('Imprimir',['class'=>'btn btn-block btn-primary btn-xs'])!!}
-        {!!Form::close()!!}
-      </td>
-      @endcan
       </tr>
       @endforeach
       <tfoot>
@@ -82,13 +73,10 @@
           <th>Correo</th>
           <th>Logo</th>
           @can('taller.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('taller.destroy')
-          <th>Eliminar</th>
-          @endcan
-          @can('taller.test')
-          <th>test</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

@@ -17,9 +17,8 @@ class Servicios extends Migration
         $table->increments('id_servicio');
         $table->unsignedInteger('id_anexo');
         $table->string('nombre');
-        $table->double('mano_obre',20,2);
+        $table->double('mano_obra',20,2);
         $table->double('refaccion',20,2);
-        $table->string('unidad_medida');
         $table->foreign('id_anexo')->references('id_anexo')->on('anexo');
         $table->timestamp('updated_at')->nullable();
         $table->timestamp('created_at')->nullable();

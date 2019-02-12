@@ -63,10 +63,10 @@
           <th>Encargado</th>
           <th>Puesto</th>
           @can('area.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('area.destroy')
-          <th>Eliminar</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

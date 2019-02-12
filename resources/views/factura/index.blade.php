@@ -77,10 +77,10 @@
           <th>Fecha de Envio al Area</th>
           <th>Fecha de Recibo al Area</th>
           @can('factura.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('factura.destroy')
-          <th>Eliminar</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

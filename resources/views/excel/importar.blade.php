@@ -53,6 +53,7 @@
     </form>
   </div><!-- /.box-body -->
 </div><!-- /.box -->
+
 <div class="box box-solid box-info">
   <div class="box-header with-border">
     <h3 class="box-title">Taller</h3>
@@ -88,6 +89,45 @@
     </div>
     </form>
   </div><!-- /.box-body -->
+
+    <div class="box box-solid box-primary">
+    <div class="box-header with-border">
+    <h3 class="box-title">Modelos</h3>
+    <div class="box-tools pull-right">
+    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body">
+    <form class="form-group" method="post" action="{{route('importar.anexo')}}" enctype="multipart/form-data">
+    @csrf
+    <div class="box-body">
+      <div>
+        <strong>Instrucciones:</strong>
+        <p>Para Subir los datos desde una hoja de excel la hoja debe ser de acuerdo a las siguientes caracteristicas
+        :</p>
+        <ul>
+          <li>No debe contener encabezados.</li>
+          <li>Solo debe tener la informacion en una sola hoja.</li>
+          <li>Los datos deben estar registrados en 3 columnas con la siguiente informacion y mismo orden:</li>
+          <ol type="A">
+            <li>Marca.</li>
+            <li>Tipo.</li>
+            <li>Modelo.</li>
+            <li>Cil.</li>
+          </ol>
+        </ul>
+        <input type="file" name="Anexo" required>
+      </div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+    @can('importar.area')
+    <button type="submit" class="btn btn-primary">Cargar</button>
+    @endcan
+    </div>
+    </form>
+    </div><!-- /.box-body -->
+    </div><!-- /.box -->
+
 </div>
 <div class="col-md-6">
   <div class="box box-solid box-success">
@@ -172,6 +212,48 @@
   </div><!-- /.box-body -->
 </div><!-- /.box -->
 </div>
+
+
+<div class="col-md-6">
+  <div class="box box-solid box-success">
+<div class="box-header with-border">
+<h3 class="box-title">Servicios</h3>
+<div class="box-tools pull-right">
+<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+</div><!-- /.box-tools -->
+</div><!-- /.box-header -->
+<div class="box-body">
+<form class="form-group" method="post" action="{{route('importar.servicio')}}" enctype="multipart/form-data">
+@csrf
+<div class="box-body">
+  <div>
+    <strong>Instrucciones:</strong>
+    <p>Para Subir los datos desde una hoja de excel la hoja debe ser de acuerdo a las siguientes caracteristicas
+    :</p>
+    <ul>
+      <li>No debe contener encabezados.</li>
+      <li>Solo debe tener la informacion en una sola hoja.</li>
+      <li>No debe contener campos vacios</li>
+      <li>Los datos deben estar registrados en 3 columnas con la siguiente informacion y mismo orden:</li>
+      <ol type="A">
+        <li>No.</li>
+        <li>Nombre del Servicio.</li>
+        <li>Valor de Mano de Obra en formato general no de contabilidad.</li>
+        <li>Valor de Refaccion en formato general no de contabilidad</li>
+      </ol>
+    </ul>
+    <input type="file" name="Servicio" required>
+  </div>
+</div><!-- /.box-body -->
+<div class="box-footer">
+@can('importar.area')
+<button type="submit" class="btn btn-primary">Cargar</button>
+@endcan
+</div>
+</form>
+</div><!-- /.box-body -->
 </div><!-- /.box -->
+</div>
+</div>
   </section><!-- /.content -->
 @endsection

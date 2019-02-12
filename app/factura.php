@@ -10,6 +10,7 @@ class factura extends Model
   protected $primaryKey='id_factura';
   public $timestamp=false;
   protected $fillable=[
+    'id_orden',
     'folio',
     'importe',
     'fecha',

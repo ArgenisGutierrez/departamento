@@ -68,10 +68,10 @@
           <th>Rol</th>
           <th >Descripcion</th>
           @can('roles.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('roles.destroy')
-          <th>Eliminar</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

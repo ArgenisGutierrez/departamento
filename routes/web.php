@@ -208,6 +208,12 @@ Route::middleware(['auth'])->group(function(){
   Route::post('importar/areasdos', 'ExcelController@importar_areas_dos')->name('importar.areados')
   ->middleware('permission:importar.areados');
 
+  Route::post('importar/anexo', 'ExcelController@importar_anexo')->name('importar.anexo')
+  ->middleware('permission:importar.anexo');
+
+  Route::post('importar/servicio', 'ExcelController@importar_servicio')->name('importar.servicio')
+  ->middleware('permission:importar.servicio');
+
 //Rutas de Archivos Aplicando Permisos
   Route::get('archivo','ArchivoController@index')->name('archivo.index')
   ->middleware('permission:archivo.index');
@@ -251,6 +257,7 @@ Route::middleware(['auth'])->group(function(){
 
   Route::put('role/{role}','RoleController@update')->name('roles.update');
 
+
   //Rutas de configuracion de dictamen Aplicando Permisos
     Route::get('dictamen','DictamenController@index')->name('dictamen.index')
     ->middleware('permission:dictamen.index');
@@ -262,6 +269,42 @@ Route::middleware(['auth'])->group(function(){
     Route::get('dictamen/{dictamen}/edit','DictamenController@edit')->name('dictamen.edit');
 
     Route::put('dictamen/{dictamen}','DictamenController@update')->name('dictamen.update');
+
+
+  //Rutas de anexos Aplicando Permiso
+  Route::get('anexo','AnexoController@index')->name('anexo.index')
+  ->middleware('permission:anexo.index');
+
+  Route::get('anexo/create','AnexoController@create')->name('anexo.create')
+  ->middleware('permission:anexo.create');
+
+  Route::post('anexo','AnexoController@store')->name('anexo.store');
+
+  Route::delete('anexo/{anexo}','AnexoController@destroy')->name('anexo.destroy')
+  ->middleware('permission:anexo.destroy');
+
+  Route::get('anexo/{anexo}/edit','AnexoController@edit')->name('anexo.edit')
+  ->middleware('permission:anexo.edit');
+
+  Route::put('anexo/{anexo}','AnexoController@update')->name('anexo.update');
+
+  Route::get('anexo/{anexo}','AnexoController@show')->name('anexo.show')
+  ->middleware('permission:anexo.show');
+
+
+  //Rutas de servicios Aplicando Permiso
+  Route::get('servicio/create/{servicio}','ServicioController@create')->name('servicio.create')
+  ->middleware('permission:servicio.create');
+
+  Route::post('servicio','ServicioController@store')->name('servicio.store');
+
+  Route::delete('servicio/{servicio}','ServicioController@destroy')->name('servicio.destroy')
+  ->middleware('permission:servicio.destroy');
+
+  Route::get('servicio/{servicio}/edit','ServicioController@edit')->name('servicio.edit')
+  ->middleware('permission:servicio.edit');
+
+  Route::put('servicio/{servicio}','ServicioController@update')->name('servicio.update');
 });
 
 //Graficas

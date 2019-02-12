@@ -61,10 +61,10 @@
           <th>Nombre</th>
           <th >Correo</th>
           @can('ususario.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('ususario.destroy')
-          <th>Eliminar</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

@@ -193,13 +193,13 @@
           <th>Fecha Salida</th>
           <th>Elaboro</th>
           @can('orden.pdf')
-          <th>Dictamen</th>
+          <td></td>
           @endcan
           @can('orden.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('orden.destroy')
-          <th>Eliminar</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

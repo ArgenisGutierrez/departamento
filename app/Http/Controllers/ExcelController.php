@@ -4,6 +4,13 @@ namespace departamento\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use departamento\orden;
+
+use departamento\Exports\AnexoExport;
+use departamento\Imports\AnexoImport;
+
+use departamento\Exports\ServicioExport;
+use departamento\Imports\ServicioImport;
+
 use departamento\Exports\OrdenExport;
 use departamento\Imports\OrdenImport;
 
@@ -87,5 +94,19 @@ public function importar_talleres(Request $request)
       Excel::import(new TallerImport, request()->file('Taller'));
 
      return redirect('/taller');
+    }
+
+public function importar_anexo(Request $request)
+    {
+      Excel::import(new AnexoImport, request()->file('Anexo'));
+
+     return redirect('/anexo');
+    }
+
+public function importar_servicio(Request $request)
+    {
+      Excel::import(new ServicioImport, request()->file('Servicio'));
+
+     return redirect('/anexo');
     }
 }

@@ -235,17 +235,25 @@
               <li><a href="{{ route('usuario.index')}}"><i class="fa fa-users"></i> Usuarios </a></li>
               @endcan
               @can('roles.index')
-              <li><a href="{{ route('roles.index')}}"><i class="fa fa-users"></i> Roles </a></li>
+              <li><a href="{{ route('roles.index')}}"><i class="fa fa-expeditedssl"></i> Roles </a></li>
               @endcan
             </ul>
           </li>
+          @can('anexo.index')
+          <li class="treeview">
+            <a href="{{route('anexo.index')}}">
+                <i class="fa fa-wrench"></i>
+                <span>Anexos</span>
+              </a>
+          </li>
+          @endcan
           @can('importar.index')
           <li><a href="/importar"><i class="fa fa-arrow-up"></i> <span>Importar Datos</span></a></li>
           @endcan
           @can('dictamen.index')
           <li class="treeview">
             <a href="#">
-                <i class="fa fa-user-plus"></i>
+                <i class="fa fa-cog"></i>
                 <span>Configurar Datos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>

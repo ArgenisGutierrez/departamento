@@ -52,7 +52,7 @@
           <th>Serie</th>
           <th>No. Economico</th>
           @can('archivo.show')
-          <th>Consultar</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>

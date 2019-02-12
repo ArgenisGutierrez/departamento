@@ -245,6 +245,16 @@ class PermissionsTableSeeder extends Seeder
           'slug'=>'importar.unidad',
           'description'=>'Importar los datos de las Unidades desde un archivo Excel',
         ]);
+        Permission::create([
+          'name'=>'Importar datos del Anexo-modelos',
+          'slug'=>'importar.anexo',
+          'description'=>'Importar los datos de los modelos del anexo desde un archivo Excel',
+        ]);
+        Permission::create([
+          'name'=>'Importar datos del Anexo-servicios',
+          'slug'=>'importar.servicio',
+          'description'=>'Importar los datos de los servicios del anexo desde un archivo Excel',
+        ]);
 
 
         //Reportes

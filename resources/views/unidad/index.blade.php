@@ -129,13 +129,13 @@
           <th>Nombre de Adscripcion</th>
           <th>Propietario</th>
           @can('unidad.edit')
-          <th>Actualizar</th>
+          <td></td>
           @endcan
           @can('unidad.destroy')
-          <th>Eliminar</th>
+          <td></td>
           @endcan
           @can('unidad.bitacora')
-          <th>Bitacora</th>
+          <td></td>
           @endcan
         </tr>
       </tfoot>
