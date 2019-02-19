@@ -16,7 +16,7 @@ class servicio extends Model
     'refaccion'
   ];
 
-  public function user()
+  public function anexo()
   {
     return $this->belongsTo('departamento\anexo','id_anexo');
   }

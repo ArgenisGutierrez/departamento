@@ -25,18 +25,13 @@ class Unidad extends Migration
           $table->string('familia',30);
 
           $table->string('area',400);
-          $table->string('placa_anterior',25);
-          $table->string('placa_actual',25);
+          $table->string('placa',25);
           $table->string('color',50);
           $table->string('propiedad',50);
           $table->string('patrulla_civil',50);
-          $table->string('estatus',20);
-          $table->string('motivo_inactividad',50);
           $table->string('ubicacion',300);
           $table->string('localidad',60);
           $table->string('adscripcion',200);
-          $table->string('nombre_adscripcion',200);
-          $table->string('propietario',200);
           $table->timestamp('updated_at')->nullable();
           $table->timestamp('created_at')->nullable();
         });

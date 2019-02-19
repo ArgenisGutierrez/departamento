@@ -236,7 +236,7 @@
       <li>No debe contener campos vacios</li>
       <li>Los datos deben estar registrados en 3 columnas con la siguiente informacion y mismo orden:</li>
       <ol type="A">
-        <li>No.</li>
+        <li>No del modelo.</li>
         <li>Nombre del Servicio.</li>
         <li>Valor de Mano de Obra en formato general no de contabilidad.</li>
         <li>Valor de Refaccion en formato general no de contabilidad</li>

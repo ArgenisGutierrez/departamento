@@ -319,3 +319,7 @@ Route::get('/grafica/importes', function () {
 Auth::routes();
 //Pagina Principal
 Route::get('/', 'HomeController@index')->name('home');
+
+//cambiodinamico
+Route::get('orden/create','SelectDinamico@index');
+Route::post('selectdinamico/fetch','SelectDinamico@fetch')->name('selectdinamico.fetch');
