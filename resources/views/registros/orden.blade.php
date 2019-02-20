@@ -74,7 +74,7 @@
                         <div class="col-md-6">
                             <div class="box-body">
                                 <label>Encargado:</label>
-                                <select class="js-example-basic-single form-control" required autocomplete="off" name="id_area">
+                                <select class="js-example-basic-single form-control" required autocomplete="off" id="id_area" name="id_area">
                                     <?php $area=departamento\Area::all() ?>
                                     @foreach($area as $areas)
                                     <option value="{{$areas->id_area}}">{{$areas->encargado}}</option>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="box-body">
                                 <label>Area que Envia:</label>
-                                <div class="form-control">
+                                <div class="form-control" id="nombre_area" name="nombre_area">
                                 </div>
                                 <label>Cargo</label>
                                 <div class="form-control">
@@ -113,7 +113,7 @@
                         <div class="col-md-4">
                             <div class="box-body">
                                 <label>Marca:</label>
-                                <select name="marca" id="marca" class="form-control dynamic" data-dependent="tipo">
+                                <select name="marca" id="marca" class="js-example-basic-single form-control dynamic" data-dependent="tipo">
                                     <option value="">Selecciona Marca</option>
                                     @foreach($marca_list as $marca)
                                     <option value="{{ $marca->marca}}">{{ $marca->marca }}</option>
@@ -124,7 +124,7 @@
                         <div class="col-md-4">
                             <div class="box-body">
                                 <label>Tipo:</label>
-                                <select name="tipo" id="tipo" class="form-control dynamic" data-dependent="modelo">
+                                <select name="tipo" id="tipo" class="js-example-basic-single form-control dynamic" data-dependent="modelo">
                                     <option value="">Selecciona Tipo</option>
                                 </select>
                             </div>
@@ -132,7 +132,7 @@
                         <div class="col-md-4">
                             <div class="box-body">
                                 <label>Modelo:</label>
-                                <select name="modelo" id="modelo" class="form-control input-lg">
+                                <select name="modelo" id="modelo" class="js-example-basic-single form-control input-lg">
                                     <option value="">Selecciona Modelo</option>
                                 </select>
                             </div>
@@ -287,13 +287,13 @@
     </div><!-- /.box -->
 </section>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--buscador de los select-->
 <script type="text/javascript">
     $(document).ready(function () {
         $('.js-example-basic-single').select2();
     });
-
 </script>
-
+<!--select dinamico para obtener el anexo-->
 <script>
 $(document).ready(function(){
 
@@ -312,11 +312,9 @@ $(document).ready(function(){
     {
      $('#'+dependent).html(result);
     }
-
    })
   }
  });
-
  $('#marca').change(function(){
   $('#tipo').val('');
   $('#modelo').val('');
@@ -325,8 +323,8 @@ $(document).ready(function(){
  $('#tipo').change(function(){
   $('#modelo').val('');
  });
- 
-
 });
 </script>
+
+
 @endsection

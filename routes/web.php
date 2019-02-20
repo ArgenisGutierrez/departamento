@@ -320,6 +320,9 @@ Auth::routes();
 //Pagina Principal
 Route::get('/', 'HomeController@index')->name('home');
 
-//cambiodinamico
+//Select naexo
 Route::get('orden/create','SelectDinamico@index');
 Route::post('selectdinamico/fetch','SelectDinamico@fetch')->name('selectdinamico.fetch');
+
+//Ajax
+Route::post('orden/create','AjaxController@area_nombre')->name('ajax.area_nombre');
