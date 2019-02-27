@@ -4,6 +4,10 @@ namespace departamento\Http\Controllers;
 
 use departamento\orden;
 use Illuminate\Http\Request;
+use departamento\Detalle;
+use DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Collection;
 
 class OrdenController extends Controller
 {
@@ -36,67 +40,92 @@ class OrdenController extends Controller
      */
     public function store(Request $request)
     {
+      try {
+        DB::beginTransaction();
 
+        if ($request->input('tipo')==='correctivo') {
+          $correctivo='si';
+          $preventivo='no';
+        }elseif ($request->input('tipo')==='preventivo') {
+          $correctivo='no';
+          $preventivo='si';
+        }
+        $id=orden::all()->last();
+        if ($id==null) {
+          $id=1;
+        }
+        else {
+          $id=$id->id_orden;
+          $id++;
+        }
+        $iniciales="";
+        $nombre=explode(" ",$request->input('nombre'));
+        foreach ($nombre as $letra) {
+          $iniciales.=$letra[0];
+        }
+        $folio=$request->input('folio_dpa')."-".$iniciales."-".$id;
+  
+        $orden= new orden();
+        $orden->folio_dpa= $folio;
+        $orden->no_oficio= $request->input('no_oficio');
+        $orden->fecha= $request->input('fecha');
+        $orden->id_area = $request->input('id_area');
+        $orden->id_area_dos = $request->input('id_area_dos');
+        $orden->correctivo = $correctivo;
+        $orden->preventivo = $preventivo;
+        if ($request->input('enllantamiento')=='') {
+          $enllantamiento='no';
+        }else {
+          $enllantamiento='si';
+        }
+        $orden->enllantamiento =$enllantamiento;
+        if ($request->input('refacciones')=='') {
+          $refacciones='no';
+        }else {
+          $refacciones='si';
+        }
+        $orden->refacciones =$refacciones;
+        if ($request->input('mano_obra')=='') {
+          $mano_obra='no';
+        }else {
+          $mano_obra='si';
+        }
+        $orden->mano_obra = $mano_obra;
+        $orden->id_unidad = $request->input('id_unidad');
+        $orden->km = $request->input('km');
+        $orden->id_taller = $request->input('id_taller');
+        $orden->importe_cotizacion = $request->input('importe_cotizacion');
+        $orden->fecha_ingreso = $request->input('fecha_ingreso');
+        $orden->fecha_salida = $request->input('fecha_salida');
+        $orden->estado=$request->input('estado');
+        $orden->id = $request->input('id');
+        $orden->save();
+  
+          //Tabla detalle
+        $id_servicio = $request->get('id_servicio'); 
+        $cantidad = $request->get('cantidad');
+        $subtotal = $request->get('subtotal');
+        
+        $cont=0;
+        
+        while($cont < count($id_servicio))
+          {
+            $detalle = new Detalle;
+            $detalle->id_orden = $orden->id_orden;
+            $detalle->id_servicio = $id_servicio[$cont];
+            $detalle->cantidad = $cantidad[$cont];
+            $detalle->subtotal = $subtotal[$cont];
+            $detalle->save();
+            $cont = $cont + 1;
+          }
 
-      if ($request->input('tipo')==='correctivo') {
-        $correctivo='si';
-        $preventivo='no';
-      }elseif ($request->input('tipo')==='preventivo') {
-        $correctivo='no';
-        $preventivo='si';
-      }
-      $id=orden::all()->last();
-      if ($id==null) {
-        $id=0;
-      }
-      else {
-        $id=$id->id_orden;
-        $id++;
-      }
-      $iniciales="";
-      $nombre=explode(" ",$request->input('nombre'));
-      foreach ($nombre as $letra) {
-        $iniciales.=$letra[0];
-      }
-      $folio=$request->input('folio_dpa')."-".$iniciales."-".$id;
+        DB::commit();
+    	} catch (Exception $e) {
+    		//Si existe algún error en la Transacción
+    		DB::rollback(); //Anular los cambios en la DB
+    	}
 
-      $orden= new orden();
-      $orden->folio_dpa= $folio;
-      $orden->no_oficio= $request->input('no_oficio');
-      $orden->fecha= $request->input('fecha');
-      $orden->id_area = $request->input('id_area');
-      $orden->id_area_dos = $request->input('id_area_dos');
-      $orden->servicio = $request->input('servicio');
-      $orden->correctivo = $correctivo;
-      $orden->preventivo = $preventivo;
-      if ($request->input('enllantamiento')=='') {
-        $enllantamiento='no';
-      }else {
-        $enllantamiento='si';
-      }
-      $orden->enllantamiento =$enllantamiento;
-      if ($request->input('refacciones')=='') {
-        $refacciones='no';
-      }else {
-        $refacciones='si';
-      }
-      $orden->refacciones =$refacciones;
-      if ($request->input('mano_obra')=='') {
-        $mano_obra='no';
-      }else {
-        $mano_obra='si';
-      }
-      $orden->mano_obra = $mano_obra;
-      $orden->id_unidad = $request->input('id_unidad');
-      $orden->km = $request->input('km');
-      $orden->id_taller = $request->input('id_taller');
-      $orden->importe_cotizacion = $request->input('importe_cotizacion');
-      $orden->fecha_ingreso = $request->input('fecha_ingreso');
-      $orden->fecha_salida = $request->input('fecha_salida');
-      $orden->estado=$request->input('estado');
-      $orden->id = $request->input('id');
-      $orden->save();
-      return redirect()->route('orden.create',[$orden])
+      return redirect()->route('orden.index',[$orden])
       ->with('status','Informacion Guardada Correctamente');
     }
 
@@ -108,7 +137,7 @@ class OrdenController extends Controller
      */
     public function show(orden $orden)
     {
-        return view('orden.show',compact('orden'));
+      return view('orden.show',compact('orden'));
     }
 
     /**
@@ -145,10 +174,19 @@ class OrdenController extends Controller
      */
     public function destroy(orden $orden)
     {
-        $orden->delete();
-        $ordenes=orden::all();
+      $orden = orden::findOrFail($orden->id_orden);
+    	$orden->estado = 'Cancelada'; //Cancelado
+    	$orden->update();
         return redirect()->route('orden.index',[$orden])
-        ->with('status','Informacion Eliminada Correctamente');
+        ->with('status','Orden Cancelada');
     }
 
+    public function activar(orden $orden)
+    {
+      $orden = orden::findOrFail($orden->id_orden);
+    	$orden->estado = 'Activa'; //Cancelado
+    	$orden->update();
+        return redirect()->route('orden.index',[$orden])
+        ->with('status','Orden Activada');
+    }
 }

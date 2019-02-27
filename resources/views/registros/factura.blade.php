@@ -30,7 +30,7 @@
       <select class="form-control" name="id_orden">
         <?php $orden=departamento\orden::all() ?>
         @foreach($orden as $ordenes)
-        @if($ordenes->factura==null)
+        @if($ordenes->factura==null && $ordenes->estado=="Activa")
         <option value="{{$ordenes->id_orden}}">{{$ordenes->folio_dpa}}</option>
         @endif
         @endforeach

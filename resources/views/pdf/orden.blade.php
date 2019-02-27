@@ -30,7 +30,7 @@
     <tr>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('marca')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('tipo')}}</td>
-        <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('placa_actual')}}</td>
+        <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('placa')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('modelo')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('serie')}}</td>
         <td style="width: 62.5px;">{{$orden->unidad->where('id_unidad',$orden->id_unidad)->value('no_economico')}}</td>
@@ -46,12 +46,12 @@
     </tr>
     <tr>
         <td id="servicio" colspan="8" style="height:245px;">
-          <?php
-          $servicios=explode(".",$orden->servicio);
-          foreach ($servicios as $valor) {
-            echo "$valor<br>";
-          }
-          ?>
+            <?php $servicios=departamento\detalle::all() ?>
+            @foreach($servicios as $servicio)
+            @if($servicio->id_orden==$orden->id_orden)
+        {{$servicio->servicio->nombre}} <br>
+        @endif
+        @endforeach
         </td>
     </tr>
     <tr>
@@ -70,23 +70,23 @@
     </tr>
     <tr>
         <td id="titulo" colspan="2">Servicio Mecánico Preventivo</td>
-          @if($orden->preventivo==='si')
-          <td> X </td>
-          @else
-          <td> - </td>
-          @endif
+        @if($orden->preventivo==='si')
+        <td> X </td>
+        @else
+        <td> - </td>
+        @endif
         <td id="titulo" colspan="2">Servicio Mecánico Correctivo</td>
-          @if($orden->correctivo==='si')
-          <td> X </td>
-          @else
-          <td> - </td>
-          @endif
+        @if($orden->correctivo==='si')
+        <td> X </td>
+        @else
+        <td> - </td>
+        @endif
         <td id="titulo">Servicio de Enllantamiento</td>
-          @if($orden->enllantamiento==='si')
-          <td> X </td>
-          @else
-          <td> - </td>
-          @endif
+        @if($orden->enllantamiento==='si')
+        <td> X </td>
+        @else
+        <td> - </td>
+        @endif
     </tr>
     <tr>
         <td id="titulo" colspan="4">Solicitud de Area Usuaria</td>
@@ -124,7 +124,8 @@
     </tr>
     <tr>
         <td colspan="4" rowspan="3"></td>
-        <td colspan="4" style="font-weight: bold;">Jefe del Departamento de Recursos Materiales y<div>Servicios Generales</td>
+        <td colspan="4" style="font-weight: bold;">Jefe del Departamento de Recursos Materiales y<div>Servicios
+                Generales</td>
     </tr>
     <tr>
         <td id="titulo" colspan="4">Autoriza</td>
@@ -147,23 +148,27 @@
 </table>
 
 <style media="screen">
-  td{
-    border: 1px solid rgb(0, 0, 0);
-    text-align: center;
-    word-wrap: break-word;
-    font-size: 13px;
-  }
-  table{
-    border-collapse: collapse;
-    border: 1px solid rgb(0, 0, 0);
-    word-wrap: break-word;
-  }
-  #titulo{
-    background-color: rgb(144, 144, 144);
-    font-weight: bold;
-  }
-  #servicio{
-    text-align: left;
-    text-align: justify;
-  }
+    td {
+        border: 1px solid rgb(0, 0, 0);
+        text-align: center;
+        word-wrap: break-word;
+        font-size: 13px;
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 1px solid rgb(0, 0, 0);
+        word-wrap: break-word;
+    }
+
+    #titulo {
+        background-color: rgb(144, 144, 144);
+        font-weight: bold;
+    }
+
+    #servicio {
+        text-align: left;
+        text-align: justify;
+    }
+
 </style>

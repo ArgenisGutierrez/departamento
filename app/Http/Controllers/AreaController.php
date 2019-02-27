@@ -36,11 +36,21 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-      $area= new Area();
-      $area->nombre= $request->input('nombre');
-      $area->encargado= $request->input('encargado');
-      $area->cargo= $request->input('cargo');
-      $area->save();
+      try {
+        DB::beginTransaction();
+        $area= new Area();
+        $area->nombre= $request->input('nombre');
+        $area->encargado= $request->input('encargado');
+        $area->cargo= $request->input('cargo');
+        $area->save();
+
+        DB::commit();
+      } 
+      catch (Exception $e) 
+      {
+    		//Si existe algún error en la Transacción
+    		DB::rollback(); //Anular los cambios en la DB
+    	}
       return redirect()->route('area.create',[$area])->with('status','Area Guardada Correctamente');
     }
 

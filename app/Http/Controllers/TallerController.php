@@ -36,18 +36,29 @@ class TallerController extends Controller
      */
     public function store(Request $request)
     {
-      if ($request->hasFile('logo')) {
-        $file=$request->file('logo');
-        $nombre=time().$file->getClientOriginalName();
-        $file->move(public_path().'/imagenes/',$nombre);
-        $taller->logo= $nombre;
-      }
-      $taller= new taller();
-      $taller->nombre= $request->input('nombre');
-      $taller->sucursal= $request->input('sucursal');
-      $taller->telefono= $request->input('telefono');
-      $taller->correo= $request->input('correo');
-      $taller->save();
+      try {
+        DB::beginTransaction();
+
+        if ($request->hasFile('logo')) {
+          $file=$request->file('logo');
+          $nombre=time().$file->getClientOriginalName();
+          $file->move(public_path().'/imagenes/',$nombre);
+          $taller->logo= $nombre;
+        }
+        $taller= new taller();
+        $taller->nombre= $request->input('nombre');
+        $taller->sucursal= $request->input('sucursal');
+        $taller->telefono= $request->input('telefono');
+        $taller->correo= $request->input('correo');
+        $taller->save();
+
+        DB::commit();
+      } 
+      catch (Exception $e) 
+      {
+    		//Si existe algún error en la Transacción
+    		DB::rollback(); //Anular los cambios en la DB
+    	}
       return redirect()->route('taller.create',[$taller])->with('status3','Informacion Guardada Correctamente');
     }
 

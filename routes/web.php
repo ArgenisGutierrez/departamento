@@ -123,6 +123,12 @@ Route::middleware(['auth'])->group(function(){
 
   Route::put('orden/{orden}','OrdenController@update')->name('orden.update');
 
+  Route::put('orden/{orden}','OrdenController@activar')->name('orden.activar')
+  ->middleware('permission:orden.activar');
+
+  Route::get('orden/{orden}','OrdenController@show')->name('orden.show')
+  ->middleware('permission:orden.show');
+
 //Rutas de factura Aplicando Permisos
   Route::get('factura','FacturaController@index')->name('factura.index')
   ->middleware('permission:factura.index');
@@ -325,4 +331,8 @@ Route::get('orden/create','SelectDinamico@index');
 Route::post('selectdinamico/fetch','SelectDinamico@fetch')->name('selectdinamico.fetch');
 
 //Ajax
-Route::post('orden/create','AjaxController@area_nombre')->name('ajax.area_nombre');
+Route::post('orden/recuperar/area','AjaxController@area1')->name('ajax.area');
+Route::post('orden/recuperar/area2','AjaxController@area2')->name('ajax.area2');
+Route::post('orden/recuperar/unidad','AjaxController@unidad')->name('ajax.unidad');
+Route::post('orden/recuperar/servicios','AjaxController@servicios')->name('ajax.servicios');
+Route::post('orden/recuperar/servicio','AjaxController@servicio')->name('ajax.servicio');

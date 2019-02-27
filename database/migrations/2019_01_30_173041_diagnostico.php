@@ -13,10 +13,10 @@ class Diagnostico extends Migration
      */
     public function up()
     {
-      Schema::create('diagnostico',function(Blueprint $table){
+      Schema::create('detalle',function(Blueprint $table){
+        $table->increments('id');
         $table->unsignedInteger('id_orden');
         $table->unsignedInteger('id_servicio');
-        $table->string('nombre');
         $table->integer('cantidad');
         $table->double('subtotal',20,2);
         $table->foreign('id_orden')->references('id_orden')->on('orden');

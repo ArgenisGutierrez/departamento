@@ -20,4 +20,8 @@ class servicio extends Model
   {
     return $this->belongsTo('departamento\anexo','id_anexo');
   }
+  public function detalles()
+  {
+      return $this->hasMany('departamento\detalle','id_detalle');
+  }
 }

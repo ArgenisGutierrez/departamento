@@ -19,21 +19,16 @@ class unidad extends Model
       'uso',
       'familia',
       'area',
-      'placa_anterior',
-      'placa_actual',
+      'placa',
       'color',
       'propiedad',
       'patrulla_civil',
-      'estatus',
-      'motivo_inactividad',
       'ubicacion',
       'localidad',
-      'adscripcion',
-      'nombre_adscripcion',
-      'propietario'
+      'adscripcion'
     ];
     public function ordenes()
     {
-        return $this->hasMany('departamento\orden','id_orden');
+      return $this->hasMany('departamento\orden','id_orden');
     }
 }

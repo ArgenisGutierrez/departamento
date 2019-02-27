@@ -36,10 +36,20 @@ class AreaDosController extends Controller
      */
     public function store(Request $request)
     {
-      $area2= new AreaDos();
-      $area2->encargado= $request->input('encargado');
-      $area2->cargo= $request->input('cargo');
-      $area2->save();
+      try {
+        DB::beginTransaction();
+        $area2= new AreaDos();
+        $area2->encargado= $request->input('encargado');
+        $area2->cargo= $request->input('cargo');
+        $area2->save();
+
+         DB::commit();
+      } 
+      catch (Exception $e) 
+      {
+    		//Si existe algún error en la Transacción
+    		DB::rollback(); //Anular los cambios en la DB
+    	}
       return redirect()->route('area2.create',[$area2])->with('status2','Informacion Guardada Correctamente');
     }
 

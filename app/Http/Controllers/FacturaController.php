@@ -36,14 +36,25 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        $factura = new factura();
-        $factura->id_orden=$request->input('id_orden');
-        $factura->folio=$request->input('folio');
-        $factura->importe=$request->input('importe');
-        $factura->fecha=$request->input('fecha');
-        $factura->fecha_envio_area=$request->input('fecha_envio_area');
-        $factura->fecha_recibo_area=$request->input('fecha_recibo_area');
-        $factura->save();
+        try {
+            DB::beginTransaction();
+
+            $factura = new factura();
+            $factura->id_orden=$request->input('id_orden');
+            $factura->folio=$request->input('folio');
+            $factura->importe=$request->input('importe');
+            $factura->fecha=$request->input('fecha');
+            $factura->fecha_envio_area=$request->input('fecha_envio_area');
+            $factura->fecha_recibo_area=$request->input('fecha_recibo_area');
+            $factura->save();
+
+            DB::commit();
+          } 
+          catch (Exception $e) 
+          {
+            //Si existe algún error en la Transacción
+            DB::rollback(); //Anular los cambios en la DB
+          }
         return redirect()->route('factura.create',[$factura])->with('status','Informacion Guardada Correctamente');
     }
 

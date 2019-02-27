@@ -15,7 +15,6 @@ class orden extends Model
     'fecha',
     'id_area',
     'id_area_dos',
-    'servicio',
     'correctivo',
     'preventivo',
     'enllantamiento',
@@ -57,5 +56,9 @@ class orden extends Model
   public function archivos()
   {
       return $this->hasOne('departamento\archivo','id_archivo');
+  }
+  public function detalles()
+  {
+      return $this->hasMany('departamento\detalle','id_detalle');
   }
 }

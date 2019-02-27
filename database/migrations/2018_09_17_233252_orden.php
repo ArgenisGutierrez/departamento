@@ -20,7 +20,6 @@ class Orden extends Migration
         $table->date('fecha');
         $table->unsignedInteger('id_area');
         $table->unsignedInteger('id_area_dos');
-        $table->string('servicio',1000);
         $table->string('correctivo');
         $table->string('preventivo');
         $table->string('enllantamiento');
