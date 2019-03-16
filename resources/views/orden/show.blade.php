@@ -88,7 +88,7 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <th>Total</th>
+                        <th>Total con IVA</th>
                         <th></th>
                         <th>
                             <h4>${{number_format($orden->importe_cotizacion, 2)}}</h4>
@@ -155,10 +155,10 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                @if($orden->refacciones=="si")
-                                <input name="refacciones" checked type="checkbox" class="flat-red" value="si">
+                                    @if($orden->refacciones=="si")
+                                    <input name="refacciones" checked type="checkbox" class="flat-red" value="si">
                                     Refacciones
-                                @else
+                                    @else
                                     <input name="refacciones" type="checkbox" class="flat-red" value="si">
                                     Refacciones
                                     @endif
@@ -200,6 +200,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="box-body">
+                            <label>Combustible:</label>
+                            <label class="form-control">{{$orden->combustible}}</label>
+                        </div>
+                        <div class="box-body">
                             <label>KM:</label>
                             <label class="form-control">{{$orden->km}}</label>
                         </div>
@@ -209,6 +213,10 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <div class="box-body">
+                            <label>Zona:</label>
+                            <label class="form-control">{{$orden->region}}</label>
+                        </div>
                         <div class="box-body">
                             <label>Fecha de Ingreso al Taller:</label>
                             <label class="form-control">{{$orden->fecha_ingreso}}</label>

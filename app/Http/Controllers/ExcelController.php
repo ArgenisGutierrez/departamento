@@ -3,10 +3,11 @@
 namespace departamento\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use departamento\orden;
 
 use departamento\Exports\AnexoExport;
 use departamento\Imports\AnexoImport;
+
+use departamento\Exports\OrdenPAgoExport;
 
 use departamento\Exports\ServicioExport;
 use departamento\Imports\ServicioImport;
@@ -64,6 +65,11 @@ public function exportar_unidades()
         public function exportar_facturas()
           {
               return Excel::download(new FacturaExport, 'Factura.xlsx');
+          }
+
+          public function exportar_ordenpago()
+          {
+              return Excel::download(new OrdenPagoExport, 'OrdenesPago.xlsx');
           }
 
 

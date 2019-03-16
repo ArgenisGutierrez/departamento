@@ -4,7 +4,7 @@ namespace departamento\Http\Controllers;
 
 use departamento\Area;
 use Illuminate\Http\Request;
-
+use DB;
 class AreaController extends Controller
 {
     /**

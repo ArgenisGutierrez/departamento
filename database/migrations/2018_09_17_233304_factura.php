@@ -16,11 +16,9 @@ class Factura extends Migration
         Schema::create('factura',function(Blueprint $table){
           $table->increments('id_factura');
           $table->unsignedInteger('id_orden');
-          $table->string('folio',10);
+          $table->string('no_tramite',40);
           $table->double('importe',15,3);
           $table->date('fecha');
-          $table->date('fecha_envio_area');
-          $table->date('fecha_recibo_area');
           $table->timestamp('updated_at')->nullable();
           $table->timestamp('created_at')->nullable();
           $table->foreign('id_orden')->references('id_orden')->on('orden');

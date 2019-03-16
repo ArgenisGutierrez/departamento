@@ -201,6 +201,9 @@ Route::middleware(['auth'])->group(function(){
   Route::get('exportar/factura', 'ExcelController@exportar_facturas')->name('factura.xlsx')
   ->middleware('permission:factura.xlsx');
 
+  Route::get('exportar/ordenpago', 'ExcelController@exportar_ordenpago')->name('ordenpago.xlsx')
+  ->middleware('permission:ordenpago.xlsx');
+
   //importar
   Route::post('importar/unidades', 'ExcelController@importar_unidades')->name('importar.unidad')
   ->middleware('permission:importar.unidad');
@@ -245,7 +248,7 @@ Route::middleware(['auth'])->group(function(){
   Route::get('archivo/dictamen_tecnico/xml/{archivo}', 'ArchivoController@dictamen_tecnico_xml')->name('archivo3.xml');
   Route::get('archivo/factura/xml/{archivo}', 'ArchivoController@factura_xml')->name('archivo4.xml');
   Route::get('archivo/acuse_recibo_area/xml/{archivo}', 'ArchivoController@acuse_recibo_area_xml')->name('archivo5.xml');
-
+  
 //Rutas de roles Aplicando Permisos
   Route::get('role','RoleController@index')->name('roles.index')
   ->middleware('permission:roles.index');
@@ -307,10 +310,34 @@ Route::middleware(['auth'])->group(function(){
   Route::delete('servicio/{servicio}','ServicioController@destroy')->name('servicio.destroy')
   ->middleware('permission:servicio.destroy');
 
-  Route::get('servicio/{servicio}/edit','ServicioController@edit')->name('servicio.edit')
+  Route::get('servicio/{servicio}/edit/{anexo}','ServicioController@edit')->name('servicio.edit')
   ->middleware('permission:servicio.edit');
 
   Route::put('servicio/{servicio}','ServicioController@update')->name('servicio.update');
+
+
+  //Rutas de ordenes de pago Aplicando Permisos
+  Route::get('ordenpago','OrdenPagoController@index')->name('ordenpago.index')
+  ->middleware('permission:ordenpago.index');
+
+  Route::get('ordenpago/create','OrdenPagoController@create')->name('ordenpago.create')
+  ->middleware('permission:ordenpago.create');
+
+  Route::post('ordenpago','OrdenPagoController@store')->name('ordenpago.store');
+
+  Route::delete('ordenpago/{ordenPago}','OrdenPagoController@destroy')->name('ordenpago.destroy')
+  ->middleware('permission:ordenpago.destroy');
+
+  Route::get('ordenpago/{ordenPago}/edit','OrdenPagoController@edit')->name('ordenpago.edit')
+  ->middleware('permission:ordenpago.edit');
+
+  Route::put('ordenpago/{ordenPago}','OrdenPagoController@update')->name('ordenpago.update');
+
+  Route::put('ordenpago/{ordenPago}','OrdenPagoController@activar')->name('ordenpago.activar')
+  ->middleware('permission:ordenpago.activar');
+
+  Route::get('ordenpago/{ordenPago}','OrdenPagoController@show')->name('ordenpago.show')
+  ->middleware('permission:ordenpago.show');
 });
 
 //Graficas

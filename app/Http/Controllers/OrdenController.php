@@ -95,6 +95,8 @@ class OrdenController extends Controller
         $orden->km = $request->input('km');
         $orden->id_taller = $request->input('id_taller');
         $orden->importe_cotizacion = $request->input('importe_cotizacion');
+        $orden->combustible = $request->input('combustible');
+        $orden->region = $request->input('region');
         $orden->fecha_ingreso = $request->input('fecha_ingreso');
         $orden->fecha_salida = $request->input('fecha_salida');
         $orden->estado=$request->input('estado');
@@ -184,7 +186,7 @@ class OrdenController extends Controller
     public function activar(orden $orden)
     {
       $orden = orden::findOrFail($orden->id_orden);
-    	$orden->estado = 'Activa'; //Cancelado
+    	$orden->estado = 'Activa'; //Activado
     	$orden->update();
         return redirect()->route('orden.index',[$orden])
         ->with('status','Orden Activada');

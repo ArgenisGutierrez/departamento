@@ -4,7 +4,7 @@ namespace departamento\Http\Controllers;
 
 use departamento\factura;
 use Illuminate\Http\Request;
-
+use DB;
 class FacturaController extends Controller
 {
     /**
@@ -41,11 +41,9 @@ class FacturaController extends Controller
 
             $factura = new factura();
             $factura->id_orden=$request->input('id_orden');
-            $factura->folio=$request->input('folio');
+            $factura->no_tramite=$request->input('no_tramite');
             $factura->importe=$request->input('importe');
             $factura->fecha=$request->input('fecha');
-            $factura->fecha_envio_area=$request->input('fecha_envio_area');
-            $factura->fecha_recibo_area=$request->input('fecha_recibo_area');
             $factura->save();
 
             DB::commit();

@@ -1,5 +1,6 @@
 <?php
 $facturas=departamento\factura::all();
+$pagos=departamento\OrdenPago::all();
 $enero=0;
 $febrero=0;
 $marzo=0;
@@ -12,90 +13,67 @@ $septiembre=0;
 $octubre=0;
 $noviembre=0;
 $diciembre=0;
-foreach ($facturas as $factura) {
-  $mes=explode("-",$factura->fecha);
+foreach ($pagos as $pago) {
+  if ($pago->estado=="Activa") {
+    $mes=explode("-",$pago->fecha);
   if ($mes[0]==$fecha) {
     if ($mes[1]==1) {
-      $enero=$enero+$factura->importe;
+      $enero=$enero+$pago->total;
     }
 
     if ($mes[1]==2) {
-      $febrero=$febrero+$factura->importe;
+      $febrero=$febrero+$pago->total;
     }
 
     if ($mes[1]==3) {
-      $marzo=$marzo+$factura->importe;
+      $marzo=$marzo+$pago->total;
     }
 
     if ($mes[1]==4) {
-      $abril=$abril+$factura->importe;
+      $abril=$abril+$pago->total;
     }
 
     if ($mes[1]==5) {
-      $mayo=$mayo+$factura->importe;
+      $mayo=$mayo+$pago->total;
     }
 
     if ($mes[1]==6) {
-      $junio=$junio+$factura->importe;
+      $junio=$junio+$pago->total;
     }
 
     if ($mes[1]==7) {
-      $julio=$julio+$factura->importe;
+      $julio=$julio+$pago->total;
     }
 
     if ($mes[1]==8) {
-      $agosto=$agosto+$factura->importe;
+      $agosto=$agosto+$pago->total;
     }
 
     if ($mes[1]==9) {
-      $septiembre=$septiembre+$factura->importe;
+      $septiembre=$septiembre+$pago->total;
     }
 
     if ($mes[1]==10) {
-      $octubre=$octubre+$factura->importe;
+      $octubre=$octubre+$pago->total;
     }
 
     if ($mes[1]==11) {
-      $noviembre=$noviembre+$factura->importe;
+      $noviembre=$noviembre+$pago->total;
     }
 
     if ($mes[1]==12) {
-      $diciembre=$diciembre+$factura->importe;
+      $diciembre=$diciembre+$pago->total;
     }
+  }
   }
 }
 $total_meses=$enero+$febrero+$marzo+$abril+$mayo+$junio+$julio+$agosto+$septiembre
 +$octubre+$noviembre+$diciembre;
 
+
 $ordenes=departamento\orden::all();
-$areas=departamento\Area::all();
-$total_area=0;
-$totales_area[]=[];
-$nombres_area[]=[];
-$i=0;
 
-foreach ($areas as $area) {
-  foreach ($ordenes as $orden) {
-    if ($orden->estado=="Activa") {
-      $año=explode("-",$orden->fecha);
-      if ($año[0]==$fecha) {
-        if ($area->nombre===$orden->area->nombre) {
-          if ($orden->factura==null) {
-          }
-          else {
-            $total_area=$total_area+$orden->factura->importe;
-          }
-        }
-      }
-    }
-  }
-  $totales_area[$i]=$total_area;
-  $nombres_area[$i]=$area->nombre;
-  $i++;
-  $total_area=0;
-
-
-  $talleres=departamento\taller::all();
+$talleres=departamento\taller::all();
   $total_taller=0;
   $totales_taller[]=[];
   $nombres_taller[]=[];
@@ -121,7 +99,42 @@ foreach ($areas as $area) {
     $x++;
     $total_taller=0;
   }
-}
+
+
+$pagos=departamento\OrdenPago::all();
+  //obtengo areas
+  $areas=[];
+  $areas_total=[];
+  $i=0;
+  foreach ($pagos as $pago) {
+    if ($pago->estado=="Activa") {
+      $año=explode("-",$pago->fecha);
+      if ($año[0]==$fecha) {
+        $areas[$i]= $pago->area;
+        $i++;
+      }
+    }
+  }
+  $areas=array_unique($areas);//elimino repetidas
+  
+  
+  foreach ($areas as $area) {
+    foreach ($pagos as $pago) {
+      if ($pago->estado=="Activa") {
+        $año=explode("-",$pago->fecha);
+        if ($año[0]==$fecha) {
+          if ($area==$pago->area) {
+            $areas_total[]+=$pago->total;
+          }
+        }
+      }
+    }
+  }
+  $total_areas=0;
+  foreach ($areas_total as $total) {
+    $total_areas+=$total;
+  }
+  $numero=count($areas);
  ?>
 <img src="imagenes/logo1.jpg" alt="" style="width: 730px; height: 65px;">
 <h3>Gastos por mes en el año {{$fecha}}</h3>
@@ -132,58 +145,57 @@ foreach ($areas as $area) {
   </tr>
   <tr>
     <td>Enero</td>
-    <td>$ {{$enero}}</td>
+    <td>${{number_format($enero, 2)}}</td>
   </tr>
   <tr>
     <td>Febrero</td>
-    <td>$ {{$febrero}}</td>
+    <td>${{number_format($febrero, 2)}}</td>
   </tr>
   <tr>
     <td>Marzo</td>
-    <td>$ {{$marzo}}</td>
+    <td>${{number_format($marzo, 2)}}</td>
   </tr>
   <tr>
     <td>Abril</td>
-    <td>$ {{$abril}}</td>
+    <td>${{number_format($abril, 2)}}</td>
   </tr>
   <tr>
     <td>Mayo</td>
-    <td>$ {{$mayo}}</td>
+    <td>${{number_format($mayo, 2)}}</td>
   </tr>
   <tr>
     <td>Junio</td>
-    <td>$ {{$junio}}</td>
+    <td>${{number_format($junio, 2)}}</td>
   </tr>
   <tr>
     <td>Juilio</td>
-    <td>$ {{$julio}}</td>
+    <td>${{number_format($julio, 2)}}</td>
   </tr>
   <tr>
     <td>Agosto</td>
-    <td>$ {{$agosto}}</td>
+    <td>${{number_format($agosto, 2)}}</td>
   </tr>
   <tr>
     <td>Septiembre</td>
-    <td>$ {{$septiembre}}</td>
+    <td>${{number_format($septiembre, 2)}}</td>
   </tr>
   <tr>
     <td>Octubre</td>
-    <td>$ {{$octubre}}</td>
+    <td>${{number_format($octubre, 2)}}</td>
   </tr>
   <tr>
     <td>Noviembre</td>
-    <td>$ {{$noviembre}}</td>
+    <td>${{number_format($noviembre, 2)}}</td>
   </tr>
   <tr>
     <td>Diciembre</td>
-    <td>$ {{$diciembre}}</td>
+    <td>${{number_format($diciembre, 2)}}</td>
   </tr>
   <tr id="resaltar">
     <td>Total de Gastos</td>
-    <td>$ {{$total_meses}}</td>
+    <td>${{number_format($total_meses, 2)}}</td>
   </tr>
 </table>
-
 
 <br>
 <h3>Total de Gastos por Area</h3>
@@ -193,19 +205,18 @@ foreach ($areas as $area) {
     <td>Total de Gasto</td>
   </tr>
   <?php
-for ($j=0; $j <$i ; $j++) {
-  $total_area=$total_area+$totales_area[$j];
-  ?>
-<tr>
-  <td>{{$nombres_area[$j]}}</td>
-  <td>$ {{$totales_area[$j]}}</td>
+  for ($i=0; $i < $numero; $i++) { 
+    ?>
+    <tr>
+  <td>{{$areas[$i]}}</td>
+  <td>${{number_format($areas_total[$i], 2)}}</td>
 </tr>
-  <?php
-}
-   ?>
+<?php
+  }
+  ?>
 <tr id="resaltar">
   <td>Total de Gastos</td>
-  <td>$ {{$total_area}}</td>
+  <td>${{number_format($total_areas, 2)}}</td>
 </tr>
 </table>
 

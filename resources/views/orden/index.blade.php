@@ -64,7 +64,7 @@
         <td>{{$orden->unidad->modelo}}</td>
         <td>{{$orden->unidad->serie}}</td>
         <td>{{$orden->taller->nombre}}</td>
-        <td>${{$orden->importe_cotizacion}}</td>
+        <td>${{number_format($orden->importe_cotizacion, 2)}}</td>
         <td>{{$orden->fecha_ingreso}}</td>
         <td>{{$orden->fecha_salida}}</td>
         <td>{{$orden->user->name}}</td>
@@ -103,7 +103,7 @@
         <td>{{$orden->unidad->modelo}}</td>
         <td>{{$orden->unidad->serie}}</td>
         <td>{{$orden->taller->nombre}}</td>
-        <td>${{$orden->importe_cotizacion}}</td>
+        <td>${{number_format($orden->importe_cotizacion, 2)}}</td>
         <td>{{$orden->fecha_ingreso}}</td>
         <td>{{$orden->fecha_salida}}</td>
         <td>{{$orden->user->name}}</td>

@@ -7,7 +7,7 @@ use departamento\unidad;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
-
+use DB;
 class ReportesController extends Controller
 {
   public function index()
@@ -31,7 +31,7 @@ class ReportesController extends Controller
        * toma en cuenta que para ver los mismos
        * datos debemos hacer la misma consulta
       **/
-      $pdf = PDF::loadView('pdf.bitacora', compact('unidad'));
+      $pdf = PDF::loadView('pdf.bitacora', compact('unidad'))->setPaper('letter','landscape');
       return $pdf->download('bitacora_'.$unidad->placa.'.pdf');
   }
 

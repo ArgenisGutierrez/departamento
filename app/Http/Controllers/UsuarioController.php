@@ -5,7 +5,7 @@ namespace departamento\Http\Controllers;
 use departamento\User;
 use Illuminate\Http\Request;
 use Caffeinated\Shinobi\Models\Role;
-
+use DB;
 class UsuarioController extends Controller
 {
     /**

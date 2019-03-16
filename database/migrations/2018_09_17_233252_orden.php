@@ -29,6 +29,8 @@ class Orden extends Migration
         $table->integer('km');
         $table->unsignedInteger('id_taller');
         $table->double('importe_cotizacion', 15, 2);
+        $table->string('combustible');
+        $table->string('region');
         $table->date('fecha_ingreso');
         $table->date('fecha_salida');
         $table->string('estado');

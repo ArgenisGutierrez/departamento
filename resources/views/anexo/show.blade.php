@@ -7,7 +7,7 @@
 <!--dataTables-->
 <section class="content-header">
     <h1>
-      Lista de Servicios
+      Lista de Servicios {{$anexo->id_anexo}}
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Menu</a></li>
@@ -48,7 +48,7 @@
         <th>${{$servicio->mano_obra}}</th>
         <th>${{$servicio->refaccion}}</th>
         @can('servicio.edit')
-        <td>{!!Form::open(['route'=>['servicio.edit',$servicio->id_servicio], 'method'=>'GET'])!!}
+        <td>{!!Form::open(['route'=>['servicio.edit',$servicio->id_servicio,$anexo->id_anexo], 'method'=>'GET'])!!}
           {!!Form::submit('Editar',['class'=>'btn  btn-block btn-warning btn-xs'])!!}
           {!!Form::close()!!}
         </td>

@@ -5,6 +5,7 @@ namespace departamento\Http\Controllers;
 use Illuminate\Http\Request;
 use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
+use DB;
 class RoleController extends Controller
 {
     /**

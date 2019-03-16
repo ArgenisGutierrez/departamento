@@ -4,7 +4,7 @@ namespace departamento\Http\Controllers;
 
 use departamento\taller;
 use Illuminate\Http\Request;
-
+use DB;
 class TallerController extends Controller
 {
     /**

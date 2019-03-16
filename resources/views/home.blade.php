@@ -187,7 +187,7 @@
               @endcan
             </ul>
           </li>
-          <li class="treeview">
+          <!-- <li class="treeview">
             <a href="#">
                 <i class="fa fa-fw fa-picture-o"></i>
                 <span>Archivos</span>
@@ -201,7 +201,7 @@
               <li><a href="/archivo"><i class="glyphicon glyphicon-save"></i> Consultar</a></li>
               @endcan
             </ul>
-          </li>
+          </li> -->
           <li class="treeview">
             <a href="#">
                 <i class="fa fa-fw fa-pie-chart"></i>
@@ -236,6 +236,21 @@
               @endcan
               @can('roles.index')
               <li><a href="{{ route('roles.index')}}"><i class="fa fa-expeditedssl"></i> Roles </a></li>
+              @endcan
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+                <i class="fa fa-file-text"></i>
+                <span>Ordenes de Pago</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            <ul class="treeview-menu">
+              @can('ordenpago.create')
+              <li><a href="{{ route('ordenpago.create')}}"><i class="glyphicon glyphicon-pencil"></i> Registrar Orden </a></li>
+              @endcan
+              @can('ordenpago.index')
+              <li><a href="{{ route('ordenpago.index')}}"><i class="fa fa-fw fa-list-ul"></i> Listado de Ordenes </a></li>
               @endcan
             </ul>
           </li>

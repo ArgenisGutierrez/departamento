@@ -6,7 +6,7 @@ use departamento\archivo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use DB;
 class ArchivoController extends Controller
 {
     /**

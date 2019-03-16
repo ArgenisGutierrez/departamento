@@ -11,6 +11,7 @@
     </div><!-- /.box-header -->
         {!! Form::model($servicio,['route'=>['servicio.update',$servicio],'method' => 'PUT','files'=>true])!!}
         <div class="box-body">
+            <input type="hidden" value="{{$anexo->id_anexo}}" name="id">
             <label>Nombre:</label>
             <input name="nombre" type="text" class="form-control" placeholder="Nombre del Servicio" required autocomplete="off" value="{{$servicio->nombre}}">
             <label>Mano de Obra:</label>

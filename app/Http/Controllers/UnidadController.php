@@ -4,7 +4,7 @@ namespace departamento\Http\Controllers;
 
 use departamento\unidad;
 use Illuminate\Http\Request;
-
+use DB;
 class UnidadController extends Controller
 {
     /**

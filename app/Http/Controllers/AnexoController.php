@@ -4,7 +4,7 @@ namespace departamento\Http\Controllers;
 
 use departamento\anexo;
 use Illuminate\Http\Request;
-
+use DB;
 class AnexoController extends Controller
 {
     /**

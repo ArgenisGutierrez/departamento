@@ -6,7 +6,7 @@
   $total=0;
  ?>
 <img src="imagenes/logo1.jpg" alt="" style="width: 730px; height: 65px;">
-<table WIDTH="730px" STYLE="table-layout:fixed">
+<table WIDTH="100%">
   <tr>
     <td colspan="10" style="width:730px;" id="resaltar">BITÁCORA DE MANTENIMIENTO VEHICULAR</td>
   </tr>
@@ -98,16 +98,16 @@
   </tr>
 </table>
 
-<table WIDTH="730px" STYLE="table-layout:fixed">
+<table WIDTH="100%" >
   <tr>
-    <td rowspan="2" id="resaltar" style="width: 40px; border: 1px solid rgb(0, 0, 0); font-size:10;">No.</td>
+    <td rowspan="2" id="resaltar" style="width: 20px; border: 1px solid rgb(0, 0, 0); font-size:10;">No.</td>
     <td colspan="2" id="resaltar" style="width: 120px; border: 1px solid rgb(0, 0, 0); font-size:10;">Fecha</td>
     <td rowspan="2" id="resaltar" style="width: 73px; border: 1px solid rgb(0, 0, 0); font-size:10;">No. Autrizacion de Reparacion</td>
     <td rowspan="2" id="resaltar" style="width: 60px; border: 1px solid rgb(0, 0, 0); font-size:10;">Kilometraje</td>
     <td rowspan="2" id="resaltar" style="width: 73px; border: 1px solid rgb(0, 0, 0); font-size:10;">Responsable del Vehiculo</td>
-    <td rowspan="2" id="resaltar" style="width: 106px; border: 1px solid rgb(0, 0, 0); font-size:10;">Detalle de Mantenimiento y/o Reparacion</td>
+    <td rowspan="2" id="resaltar" style="width: 126px; border: 1px solid rgb(0, 0, 0); font-size:10;">Detalle de Mantenimiento y/o Reparacion</td>
     <td rowspan="2" id="resaltar" style="width: 73px; border: 1px solid rgb(0, 0, 0); font-size:10;">Taller</td>
-    <td rowspan="2" id="resaltar" style="width: 40px; border: 1px solid rgb(0, 0, 0); font-size:10;">No. Factura</td>
+    <td rowspan="2" id="resaltar" style="width: 40px; border: 1px solid rgb(0, 0, 0); font-size:10;">N° Tramite</td>
     <td rowspan="2" id="resaltar" style="width: 50px; border: 1px solid rgb(0, 0, 0); font-size:10;">Importe</td>
   </tr>
   <tr>
@@ -128,21 +128,28 @@
     <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">{{$orden->no_oficio}}</td>
     <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">{{$orden->km}}</td>
     <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">{{$orden->area->encargado}}</td>
-    <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">
+    <td style="border: 1px solid rgb(0, 0, 0); font-size:7;">
       <?php
-      $servicios=explode(".",$orden->servicio);
-      foreach ($servicios as $valor) {
-        echo "$valor<br>";
-      }
+      $detalles=departamento\Detalle::all();
+      // foreach ($detalles as $detalle) {
+      //   if ($orden->id_orden==$detalle->id_orden) {
+      //     echo $detalle->servicio->nombre;
+      //   }
+      // }
       ?>
+      @foreach($detalles as $detalle)
+      @if($orden->id_orden==$detalle->id_orden)
+      {{$detalle->servicio->nombre}}<br><hr>
+      @endif
+      @endforeach
     </td>
     <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">{{$orden->taller->nombre}}</td>
     @if($orden->factura==null)
     <td style="border: 1px solid rgb(0, 0, 0); font-size:10;"></td>
     <td style="border: 1px solid rgb(0, 0, 0); font-size:10;"></td>
     @else
-    <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">{{$orden->factura->folio}}</td>
-    <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">${{$orden->factura->importe}}</td>
+    <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">{{$orden->factura->no_tramite}}</td>
+    <td style="border: 1px solid rgb(0, 0, 0); font-size:10;">${{number_format($orden->factura->importe, 2)}}</td>
     <?php $total=$total+$orden->factura->importe ?>
     @endif
   </tr>
@@ -154,7 +161,7 @@
   <tr>
     <td colspan="8"></td>
     <td id="resaltar" style="border: 1px solid rgb(0, 0, 0);">Total</td>
-    <td id="resaltar" style="border: 1px solid rgb(0, 0, 0);">$ {{$total}}</td>
+    <td id="resaltar" style="border: 1px solid rgb(0, 0, 0); font-size:10;">${{number_format($total, 2)}}</td>
   </tr>
 </table>
 

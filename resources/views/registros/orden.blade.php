@@ -175,10 +175,10 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                        <div class="box-body">
+                            <div class="box-body">
                                 <button type="button" id="bt_add" class="btn btn-primary">
-									Agregar
-								</button>
+                                    Agregar
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -194,12 +194,14 @@
                             </tr>
                         </thead>
                         <tfoot>
-                        <th>Total</th>
-                        <th></th>
-                        <th></th>
-                        <th><h4 id="total">S/ 0.00</h4></th>
-                        <input type="numbre" hidden name="importe_cotizacion" id="importe_cotizacion" value="">
-                        <th></th>
+                            <th>Total</th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <h4 id="total">S/ 0.00</h4>
+                            </th>
+                            <input type="numbre" hidden name="importe_cotizacion" id="importe_cotizacion" value="">
+                            <th></th>
                         </tfoot>
                     </table>
                     <hr>
@@ -303,8 +305,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="box-body">
+                                <label>Combustible:</label>
+                                <select name="combustible" id="combustible" class="js-example-basic-single form-control" required>
+                                    <option value="">Seleccione la Zona</option>
+                                    <option value="Gasolina">Gasolina</option>
+                                    <option value="Disel">Disel</option>
+                                </select>
+                            </div>
+                            <div class="box-body">
                                 <label>KM:</label>
-                                <input name="km" type="number" class="form-control" placeholder="Ingresa los KM"
+                                <input name="km" type="number" min="0" class="form-control" placeholder="Ingresa los KM"
                                     required autocomplete="off">
                             </div>
                             <div class="box-body">
@@ -319,6 +329,15 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="box-body">
+                                <label>Zona:</label>
+                                <select name="region" id="region" class="js-example-basic-single form-control" required>
+                                    <option value="">Seleccione la Zona</option>
+                                    <option value="Norte">Norte</option>
+                                    <option value="Centro">Centro</option>
+                                    <option value="Sur">Sur</option>
+                                </select>
+                            </div>
                             <div class="box-body">
                                 <label>Fecha de Ingreso al Taller:</label>
                                 <div class="input-group">
@@ -505,6 +524,7 @@
             })
         })
     });
+
 </script>
 <!-- Pedir  -->
 <script>
@@ -528,61 +548,71 @@
             })
         })
     });
+
 </script>
 <!--  -->
 <script>
-    $(document).ready(function(){
-		$("#bt_add").click(function(){
-			agregar();
-		});
-	});
+    $(document).ready(function () {
+        $("#bt_add").click(function () {
+            agregar();
+        });
+    });
     var cont = 0;
-	var total = 0;
-	var precio = [];
+    var total = 0;
+    var precio = [];
     //Cuando cargue el documento
-	//Ocultar el botón Guardar
-	$("#guardar").hide();
+    //Ocultar el botón Guardar
+    $("#guardar").hide();
 
-    function agregar(){
-		//Obtener los valores de los inputs
-		id_servicio = $("#servicios").val();
-		servicio = $("#servicios option:selected").text();
-		cantidad = $("#cantidad").val();
+    function agregar() {
+        //Obtener los valores de los inputs
+        id_servicio = $("#servicios").val();
+        servicio = $("#servicios option:selected").text();
+        cantidad = $("#cantidad").val();
         mano_obra = $("#mano_obra").val();
         refaccion = $("#refaccion").val();
-		//Validar los campos
-		if(id_servicio != "" && cantidad > 0 && mano_obra != "" && refaccion != ""){
-			//subtotal array inicie en el indice cero
+        //Validar los campos
+        if (id_servicio != "" && cantidad > 0 && mano_obra != "" && refaccion != "") {
+            //subtotal array inicie en el indice cero
             valor = parseFloat(mano_obra) + parseFloat(refaccion);
             //console.log(valor);
-			precio[cont] = (cantidad * valor);
-			total = total + precio[cont];
-			var fila = '<tr class="selected" id="fila'+cont+'"><td><input type="number" readonly="readonly" name="cantidad[]" value="'+cantidad+'"></td><td><input type="hidden" name="id_servicio[]" value="'+id_servicio+'">'+servicio+'</td><td><input type="number" readonly="readonly" name="subtotal[]" value="'+valor+'"></td><td>'+precio[cont].toLocaleString()+'</td><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+')">X</button></td></tr>';
-			cont++;
-            iva=total*1.16;
-			$("#total").html("$" + iva.toLocaleString());
-			evaluar();
-			$("#detalle").append(fila);
-            document.getElementById("importe_cotizacion").value=iva;
-		}else{
-			alert("Error al ingresar el servicio, revise los datos");
-		}
-	}
-    function evaluar(){
-		if(total > 0){
-			$("#guardar").show();
-		}else{
-			$("#guardar").hide();
-		}
-	}
-    function eliminar(index){
+            precio[cont] = (cantidad * valor);
+            total = total + precio[cont];
+            var fila = '<tr class="selected" id="fila' + cont +
+                '"><td><input type="number" readonly="readonly" name="cantidad[]" value="' + cantidad +
+                '"></td><td><input type="hidden" name="id_servicio[]" value="' + id_servicio + '">' + servicio +
+                '</td><td><input type="number" readonly="readonly" name="subtotal[]" value="' + valor + '"></td><td>' +
+                precio[cont].toLocaleString() +
+                '</td><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont +
+                ')">X</button></td></tr>';
+            cont++;
+            iva = total * 1.16;
+            $("#total").html("$" + iva.toLocaleString());
+            evaluar();
+            $("#detalle").append(fila);
+            document.getElementById("importe_cotizacion").value = iva;
+        } else {
+            alert("Error al ingresar el servicio, revise los datos");
+        }
+    }
+
+    function evaluar() {
+        if (total > 0) {
+            $("#guardar").show();
+        } else {
+            $("#guardar").hide();
+        }
+    }
+
+    function eliminar(index) {
         //total=total/1.16;
-		total = total-precio[index];
-        iva=total*1.16;
-		$("#total").html("$" + iva.toLocaleString());
-		$("#fila" + index).remove();
-        document.getElementById("importe_cotizacion").value=iva;
-		evaluar();
-	}
+        total = total - precio[index];
+        iva = total * 1.16;
+        $("#total").html("$" + iva.toLocaleString());
+        $("#fila" + index).remove();
+        document.getElementById("importe_cotizacion").value = iva;
+        evaluar();
+    }
+
 </script>
 @endsection

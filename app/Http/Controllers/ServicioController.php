@@ -3,8 +3,9 @@
 namespace departamento\Http\Controllers;
 
 use departamento\servicio;
+use departamento\anexo;
 use Illuminate\Http\Request;
-
+use DB;
 class ServicioController extends Controller
 {
     /**
@@ -55,9 +56,9 @@ class ServicioController extends Controller
      * @param  \departamento\servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function edit(servicio $servicio)
+    public function edit(servicio $servicio,anexo $anexo)
     {
-        return view('servicio.edit',compact('servicio'));
+        return view('servicio.edit',compact('servicio','anexo'));
     }
 
     /**
@@ -69,9 +70,10 @@ class ServicioController extends Controller
      */
     public function update(Request $request, servicio $servicio)
     {
+      $id= $request->input('id');
       $servicio->fill($request->all());
       $servicio->save();
-      return redirect()->route('anexo.index');
+      return redirect()->route('anexo.show', ['id' => $id]);
     }
 
     /**
