@@ -1,5 +1,5 @@
 @extends('home')
-@section('title','- Taller')
+@section('title','- Servicio')
 @section('content')
 <section class="content-header">
     <h1>
@@ -21,10 +21,10 @@
 </div><!-- /.box-header -->
 <div class="box-body">
 @include('common.status')
-<form class="form-horizontal" method="post" action="/factura">
+<form class="form-group" method="post" action="{{route('servicio.store')}}">
   @csrf
 <div class="box-body">
-  <input type="text" name="id_anexo" value="" hidden>
+  <input type="text" name="id_anexo" value="{{$anexo->id_anexo}}" hidden>
   <div class="form-group">
     <label>Nombre del servicio:</label>
     <input name="nombre" type="text" class="form-control" placeholder="Ingresa el Nombre" required autocomplete="off">

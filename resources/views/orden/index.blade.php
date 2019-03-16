@@ -46,7 +46,7 @@
                 <th>Detalle</th>
                 @endcan
                 @can('orden.destroy')
-                <th>Eliminar</th>
+                <th>Cancelar</th>
                 @endcan
             </tr>
         </thead>

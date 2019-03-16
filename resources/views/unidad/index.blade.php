@@ -58,7 +58,7 @@
                 <th>Eliminar</th>
                 @endcan
                 @can('unidad.bitacora')
-                <th>Bitacora</th>
+                <th>Historial</th>
                 @endcan
             </tr>
         </thead>

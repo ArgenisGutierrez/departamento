@@ -102,7 +102,7 @@
                                 </div><!-- /.input group -->
                                 </div>
                             </div>
-                            <input type="number" hidden name="total_tramite" id="total_tramite" >
+                            <input type="number" step="0.01" hidden name="total_tramite" id="total_tramite" >
                             <div class="col-md-3">
                                 <div class="box-body">
                                 <label>Agregar:</label><br>
@@ -172,7 +172,7 @@
             var fila = '<tr class="selected" id="fila' + cont +
                 '"><td><input type="text" readonly="readonly" name="folio[]" value="' + folio +
                 '"></td><td><input type="date" readonly name="fecha[]" value="' + fecha + '">' + 
-                '</td><td><input type="number" readonly="readonly" name="total[]" value="' + valor + '"></td><td>' +
+                '</td><td><input type="number" step="0.01" readonly="readonly" name="total[]" value="' + valor + '"></td><td>' +
                 '</td><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont +
                 ')">X</button></td></tr>';
             cont++;

@@ -10,7 +10,8 @@
 </div><!-- /.box-tools -->
 </div><!-- /.box-header -->
 <div class="box-body">
-<form class="form-horizontal" action="{{route('anexo.store')}}index.html" method="post">
+<form class="form-group" method="post" action="{{route('anexo.store')}}">
+@csrf
   <div class="box-body">
     <div class="form-group">
       <label>Marca:</label>

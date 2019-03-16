@@ -23,9 +23,9 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(anexo $anexo)
     {
-      //
+      return view('servicio.create',compact('anexo')); 
     }
 
     /**
@@ -36,7 +36,24 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      try {
+        DB::beginTransaction();
+        $servicio= new servicio();
+        $id= $request->input('id_anexo');
+        $servicio->id_anexo=$id;
+        $servicio->nombre= $request->input('nombre');
+        $servicio->mano_obra= $request->input('mano_obra');
+        $servicio->refaccion= $request->input('refaccion');
+        $servicio->save();
+
+        DB::commit();
+      } 
+      catch (Exception $e) 
+      {
+    		//Si existe algún error en la Transacción
+    		DB::rollback(); //Anular los cambios en la DB
+    	}
+      return redirect()->route('anexo.show', ['id' => $id]);
     }
 
     /**
@@ -58,7 +75,7 @@ class ServicioController extends Controller
      */
     public function edit(servicio $servicio,anexo $anexo)
     {
-        return view('servicio.edit',compact('servicio','anexo'));
+      return view('servicio.edit',compact('servicio','anexo'));
     }
 
     /**

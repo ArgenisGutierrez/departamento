@@ -302,7 +302,7 @@ Route::middleware(['auth'])->group(function(){
 
 
   //Rutas de servicios Aplicando Permiso
-  Route::get('servicio/create/{servicio}','ServicioController@create')->name('servicio.create')
+  Route::get('servicio/create/{anexo}','ServicioController@create')->name('servicio.create')
   ->middleware('permission:servicio.create');
 
   Route::post('servicio','ServicioController@store')->name('servicio.store');

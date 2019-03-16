@@ -175,7 +175,7 @@
           <li class="treeview">
             <a href="#">
                 <i class="fa fa-fw fa-dollar"></i>
-                <span>Factura</span>
+                <span>Pago de Ordenes</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             <ul class="treeview-menu">
