@@ -84,9 +84,9 @@
         </tr>
       </tfoot>
       </table>
-      <a href="{{route('anexo.create')}}" class="btn btn-sm btn-primary">
+      <!--<a href="{{route('anexo.create')}}" class="btn btn-sm btn-primary">
         Registrar nuevo modelo
-      </a>
+      </a>-->
     </div>
   </div>
 </div>

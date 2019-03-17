@@ -32,7 +32,7 @@ class ReportesController extends Controller
        * datos debemos hacer la misma consulta
       **/
       $pdf = PDF::loadView('pdf.bitacora', compact('unidad'))->setPaper('letter','landscape');
-      return $pdf->download('bitacora_'.$unidad->serie.'.pdf');
+      return $pdf->download('bitacora_'.$unidad->placa.'.pdf');
   }
 
   public function pdf(orden $orden)

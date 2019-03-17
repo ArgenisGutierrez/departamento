@@ -1,39 +1,32 @@
 <?php
 use Carbon\Carbon;
-$pagos=departamento\OrdenPago::all();
-  //obtengo areas
-  $areas=[];
-  $areas_total=[];
-  $i=0;
-  foreach ($pagos as $pago) {
-    if ($pago->estado=="Activa") {
-      $año=explode("-",$pago->fecha);
-      if ($año[0]==Carbon::now()->year) {
-        $areas[$i]= $pago->area;
-        $i++;
-      }
-    }
-  }
-  $areas=array_unique($areas);//elimino repetidas
-  
-  
-  foreach ($areas as $area) {
-    foreach ($pagos as $pago) {
-      if ($pago->estado=="Activa") {
-        $año=explode("-",$pago->fecha);
-        if ($año[0]==Carbon::now()->year) {
-          if ($area==$pago->area) {
-            $areas_total[]+=$pago->total;
+$ordenes=departamento\orden::all();
+$areas=departamento\Area::all();
+$total=0;
+$totales[]=[];
+$nombres[]=[];
+$i=0;
+
+foreach ($areas as $area) {
+  foreach ($ordenes as $orden) {
+    if ($orden->estado=="Activa") {
+      $fecha=explode("-",$orden->fecha);
+      if ($fecha[0]==Carbon::now()->year) {
+        if ($area->nombre===$orden->area->nombre) {
+          if ($orden->factura==null) {
+          }
+          else {
+            $total=$total+$orden->factura->importe;
           }
         }
       }
     }
   }
-  $total_areas=0;
-  foreach ($areas_total as $total) {
-    $total_areas+=$total;
-  }
-  $numero=count($areas);
+  $totales[$i]=$total;
+  $nombres[$i]=$area->nombre;
+  $i++;
+  $total=0;
+}
  ?>
 
  <!-- jQuery 2.1.4 -->
@@ -50,16 +43,16 @@ $pagos=departamento\OrdenPago::all();
    var pieChart = new Chart(pieChartCanvas);
    var PieData = [
      <?php
-     for ($i=0; $i <$numero ; $i++) {
+     for ($j=0; $j <$i ; $j++) {
        $num1=rand(0,255);
        $num2=rand(0,255);
        $num3=rand(0,255);
        ?>
        {
-         value: {{$areas_total[$i]}},
+         value: {{$totales[$j]}},
          color: "rgb( {{$num1}}, {{$num2}}, {{$num3}})", <?php $num2=$num2+30; ?>
          highlight: "rgb( {{$num1}}, {{$num2}}, {{$num3}})",
-         label: "{{$areas[$i]}}"
+         label: "{{$nombres[$j]}}"
        },
        <?php
      }

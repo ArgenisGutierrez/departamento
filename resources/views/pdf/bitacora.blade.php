@@ -8,7 +8,7 @@
 <img src="imagenes/logo1.jpg" alt="" style="width: 730px; height: 65px;">
 <table WIDTH="100%">
   <tr>
-    <td colspan="10" style="width:730px;" id="resaltar">HISTORIAL DE MANTENIMIENTO VEHICULAR</td>
+    <td colspan="10" style="width:730px;" id="resaltar">BITÁCORA DE MANTENIMIENTO VEHICULAR</td>
   </tr>
   <tr>
     <td style="height: 18px; "></td>

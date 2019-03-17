@@ -25,6 +25,7 @@
   </div><!-- /.box-header -->
   <div class="box-body">
     <div class="box-body table-responsive no-padding">
+
       <table class="table table-bordered table-striped" id="myTable" style="width:100%">
         <thead>
             <tr>
@@ -74,9 +75,6 @@
         </tr>
       </tfoot>
       </table>
-      {!!Form::open(['route'=>['servicio.create',$anexo->id_anexo], 'method'=>'GET'])!!}
-      {!!Form::submit('Agregar Nuevo Servicio',['class'=>'btn btn-primary btn-xs'])!!}
-      {!!Form::close()!!}
     </div><!-- /.box-body -->
   </div><!-- /.box-body -->
 </div><!-- /.box -->

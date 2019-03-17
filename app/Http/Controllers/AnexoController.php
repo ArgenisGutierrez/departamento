@@ -36,23 +36,13 @@ class AnexoController extends Controller
      */
     public function store(Request $request)
     {
-      try {
-        DB::beginTransaction();
-        $anexo= new anexo();
-        $anexo->marca= $request->input('marca');
-        $anexo->tipo= $request->input('tipo');
-        $anexo->modelo= $request->input('modelo');
-        $anexo->cil= $request->input('cil');
-        $anexo->save();
-
-        DB::commit();
-      } 
-      catch (Exception $e) 
-      {
-    		//Si existe algún error en la Transacción
-    		DB::rollback(); //Anular los cambios en la DB
-    	}
-      return redirect()->route('anexo.index',[$anexo])->with('status','Modelo Guardado Correctamente');
+      $anexo= new anexo();
+      $anexo->marca= $request->input('marca');
+      $anexo->tipo= $request->input('tipo');
+      $anexo->modelo= $request->input('modelo');
+      $anexo->cil= $request->input('cil');
+      $anexo->save();
+      return redirect()->route('anexo.create',[$anexo])->with('status','Modelo Guardada Correctamente');
     }
 
     /**
